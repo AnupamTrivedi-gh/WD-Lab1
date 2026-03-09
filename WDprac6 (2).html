@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scholarship Registration Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #1a3a2a;
+      --gold:  #2e9e6b;
+      --cream: #f0f7f4;
+      --white: #ffffff;
+      --muted: #5a7a6a;
+      --border: #b6d9c8;
+      --radius: 10px;
+      --shadow: 0 4px 24px rgba(26,58,42,.10);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px 60px;
+      color: var(--navy);
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    header p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .93rem;
+      font-weight: 300;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 680px;
+      padding: 40px 44px;
+    }
+
+    /* ── Fieldset ── */
+    fieldset {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px 20px;
+      margin-bottom: 28px;
+    }
+    legend {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--navy);
+      background: var(--white);
+      padding: 0 10px;
+      margin-left: -4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    legend .dot {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ── Form rows ── */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 18px;
+    }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    label span.req { color: var(--gold); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .92rem;
+      color: var(--navy);
+      background: var(--cream);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+      background: var(--white);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    select { appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 38px;
+    }
+
+    /* ── Radio & Checkbox ── */
+    .options-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 400;
+      color: var(--navy);
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      transition: border-color .2s, background .2s;
+    }
+    .option-label:hover { border-color: var(--gold); }
+    input[type="radio"], input[type="checkbox"] {
+      accent-color: var(--gold);
+      width: 15px; height: 15px;
+    }
+    input[type="radio"]:checked + span,
+    input[type="checkbox"]:checked + span { font-weight: 500; }
+    .option-label:has(input:checked) {
+      border-color: var(--gold);
+      background: #e6f5ee;
+    }
+
+    /* ── Submit ── */
+    .submit-wrap {
+      text-align: center;
+      margin-top: 8px;
+    }
+    button[type="submit"] {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      padding: 14px 48px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(15,31,61,.18);
+    }
+    button[type="submit"]:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,168,76,.30);
+    }
+    button[type="submit"]:active { transform: translateY(0); }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0 24px;
+    }
+
+    @media (max-width: 520px) {
+      .card { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Scholarship &amp; Seminar<br>Registration Form</h1>
+  <p>Fill in your details to apply for the scholarship / seminar seat.</p>
+</header>
+
+<div class="card">
+  <form action="#" method="post">
+
+    <!-- Personal Information -->
+    <fieldset>
+      <legend><span class="dot"></span> Personal Information</legend>
+      <div class="divider"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="fname" placeholder="e.g. Rahul" required />
+        </div>
+        <div class="form-group">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" name="lname" placeholder="e.g. Sharma" required />
+        </div>
+        <div class="form-group">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" />
+        </div>
+        <div class="form-group full">
+          <label>Gender <span class="req">*</span></label>
+          <div class="options-group">
+            <label class="option-label">
+              <input type="radio" name="gender" value="male" required />
+              <span>Male</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="gender" value="female" />
+              <span>Female</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="gender" value="other" />
+              <span>Other</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Academic Details -->
+    <fieldset>
+      <legend><span class="dot"></span> Academic Details</legend>
+      <div class="divider"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Course / Program <span class="req">*</span></label>
+          <select name="course" required>
+            <option value="" disabled selected>Select course</option>
+            <option>B.Sc. Computer Science</option>
+            <option>B.E. / B.Tech</option>
+            <option>BCA</option>
+            <option>MCA</option>
+            <option>M.Sc. IT</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Year of Study <span class="req">*</span></label>
+          <select name="year" required>
+            <option value="" disabled selected>Select year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Percentage / CGPA</label>
+          <input type="number" name="marks" min="0" max="100" step="0.01" placeholder="e.g. 85.5" />
+        </div>
+        <div class="form-group">
+          <label>Annual Family Income (₹)</label>
+          <select name="income">
+            <option value="" disabled selected>Select range</option>
+            <option>Below ₹1,00,000</option>
+            <option>₹1,00,000 – ₹2,50,000</option>
+            <option>₹2,50,000 – ₹5,00,000</option>
+            <option>Above ₹5,00,000</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Seminar Preferences -->
+    <fieldset>
+      <legend><span class="dot"></span> Seminar Preferences</legend>
+      <div class="divider"></div>
+      <div class="form-group">
+        <label>Topics of Interest <span class="req">*</span></label>
+        <div class="options-group">
+          <label class="option-label">
+            <input type="checkbox" name="topic" value="web" />
+            <span>Web Development</span>
+          </label>
+          <label class="option-label">
+            <input type="checkbox" name="topic" value="ai" />
+            <span>Artificial Intelligence</span>
+          </label>
+          <label class="option-label">
+            <input type="checkbox" name="topic" value="cyber" />
+            <span>Cybersecurity</span>
+          </label>
+          <label class="option-label">
+            <input type="checkbox" name="topic" value="data" />
+            <span>Data Science</span>
+          </label>
+          <label class="option-label">
+            <input type="checkbox" name="topic" value="cloud" />
+            <span>Cloud Computing</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:18px;">
+        <label>Preferred Mode</label>
+        <div class="options-group">
+          <label class="option-label">
+            <input type="radio" name="mode" value="online" />
+            <span>Online</span>
+          </label>
+          <label class="option-label">
+            <input type="radio" name="mode" value="offline" />
+            <span>Offline</span>
+          </label>
+          <label class="option-label">
+            <input type="radio" name="mode" value="hybrid" />
+            <span>Hybrid</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:18px;">
+        <label>Additional Comments</label>
+        <textarea name="comments" placeholder="Any special requirements or queries..."></textarea>
+      </div>
+    </fieldset>
+
+    <!-- Submit -->
+    <div class="submit-wrap">
+      <button type="submit">Submit Application →</button>
+    </div>
+
+  </form>
+</div>
+
+</body>
+</html>
