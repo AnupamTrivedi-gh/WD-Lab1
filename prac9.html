@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive CSS3 Webpage</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- Icons (Font Awesome) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(120deg, #89f7fe, #66a6ff);
+    }
+
+    header {
+        text-align: center;
+        padding: 20px;
+        background: #222;
+        color: white;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        background: #444;
+        padding: 10px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #ffeb3b;
+        transform: scale(1.1);
+    }
+
+    /* Multi-column layout */
+    .content {
+        column-count: 3;
+        column-gap: 20px;
+        padding: 20px;
+    }
+
+    .content p {
+        background: white;
+        padding: 15px;
+        margin: 0 0 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: transform 0.3s;
+    }
+
+    .content p:hover {
+        transform: translateY(-10px);
+    }
+
+    /* Icons section */
+    .icons {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        background: white;
+    }
+
+    .icons i {
+        font-size: 40px;
+        transition: 0.3s;
+    }
+
+    .icons i:hover {
+        color: #ff5722;
+        transform: rotate(20deg) scale(1.2);
+    }
+
+    /* Animation */
+    .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        margin: 30px auto;
+        animation: move 3s infinite alternate;
+    }
+
+    @keyframes move {
+        from { transform: translateX(0); }
+        to { transform: translateX(200px); }
+    }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+        .content {
+            column-count: 2;
+        }
+    }
+
+    @media(max-width: 600px) {
+        .content {
+            column-count: 1;
+        }
+
+        nav {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Responsive CSS3 Webpage</h1>
+    <p>Using Columns, Fonts, Icons, Animations & Transformations</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+</nav>
+
+<section class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+    <p>Cras vehicula, mi eget laoreet pulvinar.</p>
+    <p>Nullam non urna vitae neque commodo.</p>
+    <p>Integer nec odio. Praesent libero.</p>
+    <p>Sed cursus ante dapibus diam.</p>
+</section>
+
+<section class="icons">
+    <i class="fas fa-home"></i>
+    <i class="fas fa-user"></i>
+    <i class="fas fa-cog"></i>
+    <i class="fas fa-heart"></i>
+</section>
+
+<div class="box"></div>
+
+</body>
+</html>
