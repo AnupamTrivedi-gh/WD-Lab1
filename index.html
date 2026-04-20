@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Frames Practical</title>
+</head>
+
+<!-- FRAMESET: Divides window into rows -->
+<frameset rows="65px, *, 36px" border="0" frameborder="0">
+
+  <!-- Frame 1: Header -->
+  <frame src="header.html" name="header" scrolling="no" noresize />
+
+  <!-- Nested frameset: Divides middle row into columns -->
+  <frameset cols="180px, *" border="3" frameborder="1" bordercolor="#6c63ff">
+    <frame src="nav.html"     name="nav"  scrolling="no" noresize />
+    <frame src="map.html"     name="main" scrolling="auto" />
+  </frameset>
+
+  <!-- Frame 3: Footer -->
+  <frame src="footer.html" name="footer" scrolling="no" noresize />
+
+  <!-- Fallback for browsers without frame support -->
+  <noframes>
+    <body style="font-family:sans-serif;background:#0f0f1a;color:#fff;padding:40px;text-align:center;">
+      <h2>⚠️ Browser does not support Frames</h2>
+      <p>Please open in a modern browser.</p>
+    </body>
+  </noframes>
+
+</frameset>
+</html>

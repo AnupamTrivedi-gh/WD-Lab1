@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: #0f0f1a;
+      font-family: 'DM Mono', monospace;
+      color: #fff;
+      padding: 24px;
+    }
+
+    .page-label {
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      color: #f59e0b;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+
+    .desc {
+      font-size: 0.62rem;
+      color: #666;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    button {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      padding: 7px 14px;
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: #f59e0b;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+
+    button:hover, button.active {
+      background: rgba(245,158,11,0.2);
+      border-color: #f59e0b;
+      color: #fff;
+    }
+
+    .url-bar {
+      background: #0a0a14;
+      border: 1px solid #1a1a2e;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 0.6rem;
+      color: #f59e0b;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .url-bar span:first-child { color: #444; white-space: nowrap; }
+
+    .iframe-box {
+      border: 2px solid #f59e0b;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .iframe-label {
+      background: #f59e0b;
+      color: #000;
+      font-size: 0.55rem;
+      letter-spacing: 2px;
+      padding: 5px 14px;
+      font-weight: 700;
+    }
+
+    /* ★ External page iframe */
+    iframe {
+      display: block;
+      width: 100%;
+      height: 340px;
+      border: none;
+    }
+
+    .note {
+      margin-top: 12px;
+      font-size: 0.58rem;
+      color: #555;
+      letter-spacing: 0.5px;
+      line-height: 1.8;
+      padding: 10px 14px;
+      border-left: 3px solid #f59e0b44;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-label">iframe embed · demo 2</div>
+  <h2>🌐 External Page Embed</h2>
+  <p class="desc">
+    Click buttons to load different pages into the iframe below.<br>
+    Note: many sites block embedding via X-Frame-Options headers.
+  </p>
+
+  <div class="btn-row">
+    <button class="active" onclick="load('https://example.com', this)">example.com</button>
+    <button onclick="load('https://www.openstreetmap.org/export/embed.html?bbox=78.9,21.0,79.3,21.3&layer=mapnik', this)">OpenStreetMap</button>
+    <button onclick="load('https://www.wikipedia.org', this)">Wikipedia</button>
+  </div>
+
+  <div class="url-bar">
+    <span>SRC ▶</span>
+    <span id="urlShow">https://example.com</span>
+  </div>
+
+  <div class="iframe-box">
+    <div class="iframe-label">IFRAME — EXTERNAL PAGE EMBED</div>
+
+    <!-- ★ External page iframe with sandbox -->
+    <iframe
+      id="extFrame"
+      src="https://example.com"
+      sandbox="allow-scripts allow-same-origin allow-forms"
+      loading="lazy"
+      title="External Page">
+    </iframe>
+  </div>
+
+  <div class="note">
+    ⚠ Sites like Google set <b>X-Frame-Options: DENY</b> which blocks embedding.<br>
+    Use official embed URLs (like Google Maps /embed) for reliable results.
+  </div>
+
+  <script>
+    function load(url, btn) {
+      document.getElementById('extFrame').src = url;
+      document.getElementById('urlShow').textContent = url;
+      document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

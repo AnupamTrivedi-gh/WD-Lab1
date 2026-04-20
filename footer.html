@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: #080810;
+      border-top: 2px solid #6c63ff;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .left  { font-size: 0.52rem; color: #333; letter-spacing: 1.5px; }
+    .mid   { font-size: 0.52rem; color: #6c63ff; letter-spacing: 1px; }
+    .right { font-size: 0.52rem; color: #333; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="left">FRAME: footerFrame &nbsp;·&nbsp; rows="36px" &nbsp;·&nbsp; scrolling="no" noresize</div>
+  <div class="mid">Web Technology Lab — HTML Frames Practical</div>
+  <div class="right" id="t"></div>
+  <script>
+    function tick(){ document.getElementById('t').textContent = new Date().toLocaleTimeString('en-IN',{hour12:false}); }
+    tick(); setInterval(tick, 1000);
+  </script>
+</body>
+</html>
