@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Frames Practical - Web Technology Lab</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+
+    #header {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    #header h2 { margin: 0; font-size: 18px; }
+    #header p  { margin: 4px 0 0; font-size: 13px; }
+
+    #layout {
+      display: flex;
+      height: calc(100vh - 70px);
+    }
+
+    #nav {
+      width: 180px;
+      background: #f0f0f0;
+      border-right: 2px solid #ccc;
+      padding: 10px;
+      flex-shrink: 0;
+    }
+    #nav h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #003366;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+    }
+    #nav a {
+      display: block;
+      padding: 8px 6px;
+      margin-bottom: 4px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #333;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    #nav a:hover { background: #003366; color: white; }
+
+    #main { flex: 1; }
+    #main iframe { width: 100%; height: 100%; border: none; }
+
+    #splitView { display: none; height: calc(100vh - 70px); }
+    #splitView .split-row { display: flex; height: 100%; }
+    #splitView iframe { flex: 1; border: none; border-right: 2px solid #ccc; }
+    #splitView iframe:last-child { border-right: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header">
+  <h2>HTML Frames & iFrame Demo — Web Technology Lab</h2>
+  <p>S.B. Jain Institute of Technology, Management & Research, Nagpur</p>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div id="layout">
+
+  <!-- NAVIGATION -->
+  <div id="nav">
+    <h3>Navigation</h3>
+    <a onclick="load('about')">📄 About Frames</a>
+    <a onclick="load('map')">🗺️ Google Map</a>
+    <a onclick="load('youtube')">▶️ YouTube Video</a>
+    <a onclick="load('wiki')">🌐 Wikipedia</a>
+    <a onclick="load('split')">⬛ Split Frame</a>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="main">
+    <iframe id="contentFrame"></iframe>
+  </div>
+
+</div>
+
+<!-- SPLIT VIEW -->
+<div id="splitView">
+  <div class="split-row">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119696.8!2d78.9!3d21.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a5e5882837%3A0xec4f5f30d2935531!2sNagpur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+      allowfullscreen loading="lazy">
+    </iframe>
+    <iframe
+      src="https://en.m.wikipedia.org/wiki/HTML"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+    </iframe>
+  </div>
+</div>
+
+<script>
+  var aboutHTML = `<!DOCTYPE html><html><body style="font-family:Arial;padding:20px;">
+    <h2>HTML Frames & iFrame</h2>
+    <p>Frames divide a webpage into sections. Modern HTML uses iframe instead of frameset.</p>
+    <h3>iframe Example:</h3>
+    <pre>&lt;iframe src="https://example.com"&gt;&lt;/iframe&gt;</pre>
+    <h3>Viva Point:</h3>
+    <p>iframe is supported in HTML5, while frameset is deprecated.</p>
+  </body></html>`;
+
+  var frame = document.getElementById('contentFrame');
+  var layout = document.getElementById('layout');
+  var splitView = document.getElementById('splitView');
+
+  // Default content
+  frame.srcdoc = aboutHTML;
+
+  function load(type) {
+    layout.style.display = 'flex';
+    splitView.style.display = 'none';
+
+    if (type === 'about') {
+      frame.srcdoc = aboutHTML;
+    } 
+    else if (type === 'map') {
+      frame.removeAttribute('srcdoc');
+      frame.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.099895!2d79.0882!3d21.1458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a5a31faf13%3A0x27a14754c16df6!2sS.B.%20Jain%20Institute%20of%20Technology%2C%20Management%20and%20Research%2C%20Nagpur!5e0!3m2!1sen!2sin';
+    } 
+    else if (type === 'youtube') {
+      frame.removeAttribute('srcdoc');
+      frame.removeAttribute('sandbox'); // IMPORTANT FIX
+      frame.src = 'https://www.youtube.com/embed/qz0aGYrrlhU?autoplay=1&mute=1&rel=0';
+    } 
+    else if (type === 'wiki') {
+      frame.removeAttribute('srcdoc');
+      frame.src = 'https://en.m.wikipedia.org/wiki/HTML';
+    } 
+    else if (type === 'split') {
+      layout.style.display = 'none';
+      splitView.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>
